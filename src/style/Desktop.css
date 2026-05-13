@@ -1,0 +1,11 @@
+.container--desktop {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    position: absolute;
+    overflow: hidden;
+    background: burlywood;
+    z-index: 1;
+}

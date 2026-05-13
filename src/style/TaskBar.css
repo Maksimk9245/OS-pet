@@ -1,0 +1,63 @@
+.container--taskbar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    z-index: 999;
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.task--btn--container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 16px;
+}
+
+.start--btn {
+    display: flex;
+    align-items: center;
+}
+
+.app--list, .system--tray {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.clock--widget {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 12px;
+    line-height: 1.2;
+    margin-left: 12px;
+    cursor: default;
+}
+.icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    border-radius: 8px;
+    cursor: pointer;
+
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+.icon-btn:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+.icon-btn:active {
+    transform: scale(0.92);
+}
