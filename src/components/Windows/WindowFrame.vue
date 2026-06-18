@@ -3,6 +3,7 @@
         class="window-frame"
         :class="{ 'is-maximized': isMaximized }"
         :style="windowStyle"
+        @mousedown="$emit('focus')"
     >
         <div class="window-header" @mousedown="startDrag" @dblclick="toggleMaximize">
             <div class="header-left">
@@ -31,16 +32,16 @@
 import { ref, computed } from 'vue';
 import { Minus, Square, X } from 'lucide-vue-next';
 
-defineProps({
-    title: { type: String, default: 'Program' },
-    icon: { type: [Object, Function], default: null }
-});
-
-defineEmits(['close']);
+defineEmits(['close', 'focus']);
 
 const isMaximized = ref(false);
 const position = ref({ x: 100, y: 100 });
 const size = ref({ width: 600, height: 400 });
+const props = defineProps ({
+    title: { type: String, default: 'Program' },
+    icon: { type: [Object, Function], default: null },
+    zIndex: { type: Number, default: 100 },
+})
 const windowStyle = computed(() => {
     if (isMaximized.value) {
         return {
@@ -48,16 +49,18 @@ const windowStyle = computed(() => {
             left: 0,
             width: '100vw',
             height: 'calc(100vh - 50px)',
-            transform: 'none'
+            transform: 'none',
+            zIndex: props.zIndex,
         };
     }
     return {
-        transform: `translate(${position.value.x}px, ${position.value.y}px)`,
-        width: `${size.value.width}px`,
-        height: `${size.value.height}px`
+        top: position.value.y + 'px',
+        left: position.value.x + 'px',
+        width: size.value.width + 'px',
+        height: size.value.height + 'px',
+        zIndex: props.zIndex,
     };
 });
-
 const toggleMaximize = () => {
     isMaximized.value = !isMaximized.value;
 };
