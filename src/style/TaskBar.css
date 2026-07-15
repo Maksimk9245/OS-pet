@@ -31,6 +31,7 @@
     align-items: center;
     gap: 4px;
 }
+
 .clock--widget {
     display: flex;
     flex-direction: column;
@@ -40,6 +41,7 @@
     margin-left: 12px;
     cursor: default;
 }
+
 .icon-btn {
     display: flex;
     align-items: center;
@@ -52,12 +54,33 @@
     color: #ffffff;
     border-radius: 8px;
     cursor: pointer;
-
+    position: relative;
     transition: background-color 0.2s ease, transform 0.1s ease;
 }
+
 .icon-btn:hover {
     background-color: rgba(255, 255, 255, 0.15);
 }
+
 .icon-btn:active {
     transform: scale(0.92);
+}
+
+.icon-btn.backlight::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 3px;
+    background-color: #0078D4;
+    border-radius: 4px;
+    box-shadow: 0 0 6px rgba(0, 120, 212, 0.6);
+    animation: popIn 0.2s ease-out;
+}
+
+@keyframes popIn {
+    from { width: 0; opacity: 0; }
+    to { width: 16px; opacity: 1; }
 }

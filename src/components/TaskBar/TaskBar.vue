@@ -13,6 +13,7 @@
                     class="icon-btn"
                     v-for="app in pinnedApps"
                     :key="app.name"
+                    :class ="{'backlight': appState[app.name]}"
                     @click="toggleApp(app.name)"
                 >
                     <component :is="app.icon" />
@@ -37,8 +38,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import Startmenu from './Startmenu.vue';
 import { Menu, Chrome, FileText, Image, Settings, Wifi, Battery, Volume2 } from 'lucide-vue-next';
-import { toggleApp } from '../../store/appState.ts'
-
+import { toggleApp, appState } from '../../store/appState.ts'
 
 const isStartmenuOpen = ref(false);
 
