@@ -21,14 +21,28 @@ export const focusApp = (appName: keyof typeof appState) => {
     appZIndex[appName] = globalZIndex;
 };
 
-export const toggleApp = (appName: keyof typeof appState) => {
-    appState[appName] = !appState[appName];
-
-    if (appState[appName]) {
+export const toggleApp = (appName: keyof typeof appState): void => {
+    if (!appState[appName]) {
+        appState[appName] = true;
+        appMinimized[appName] = false;
         focusApp(appName);
+    } else if (appMinimized[appName]) {
+        appMinimized[appName] = false;
+        focusApp(appName);
+    } else {
+        appMinimized[appName] = true;
     }
 };
 
 export const closeApp = (appName: keyof typeof appState) => {
     appState[appName] = false;
 };
+export const appMinimized = reactive({
+    Browser: false,
+    Documents: false,
+    Images: false,
+    Settings: false,
+})
+export const minimizeApp=(appName:keyof typeof appState) => {
+    appMinimized[appName] = true;
+}

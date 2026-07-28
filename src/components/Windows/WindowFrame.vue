@@ -11,7 +11,7 @@
                 <span class="header-title">{{ title }}</span>
             </div>
             <div class="header-controls">
-                <button class="control-btn minimize" @mousedown.stop>
+                <button class="control-btn minimize" @mousedown.stop @click="$emit('minimize')">
                     <Minus :size="16" />
                 </button>
                 <button class="control-btn maximize" @mousedown.stop @click="toggleMaximize">
@@ -32,7 +32,7 @@
 import { ref, computed } from 'vue';
 import { Minus, Square, X } from 'lucide-vue-next';
 
-defineEmits(['close', 'focus']);
+defineEmits(['close', 'focus','minimize']);
 
 const isMaximized = ref(false);
 const position = ref({ x: 100, y: 100 });

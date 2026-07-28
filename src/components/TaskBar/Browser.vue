@@ -4,7 +4,7 @@
                  :zIndex="appZIndex.Browser"
                  @focus="focusApp('Browser')"
                  @close="$emit('close')"
-    >
+                 @minimize="$emit('minimize')"    >
         <div class="browser--container">
             <iframe src="https://example.com" class="web--view"></iframe>
         </div>
@@ -17,7 +17,7 @@ import {appZIndex, focusApp} from "../../store/appState.ts";
 
 
 
-defineEmits(["close"]);
+defineEmits(["close", "minimize"]);
 
 </script>
 <style scoped>

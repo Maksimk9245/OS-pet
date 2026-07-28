@@ -4,6 +4,7 @@
                  :zIndex="appZIndex.Documents"
                  @focus="focusApp('Documents')"
                  @close="$emit('close')"
+                 @minimize="$emit('minimize')"
     >
         <div class="document--container">
             <textarea class="notepad-area"></textarea>
@@ -17,9 +18,7 @@ import { File } from "lucide-vue-next"
 import { appZIndex, focusApp } from "../../store/appState.ts";
 
 
-defineEmits(['close'])
-
-
+defineEmits(["close", "minimize"]);
 
 </script>
 
