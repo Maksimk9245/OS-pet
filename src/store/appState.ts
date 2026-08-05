@@ -8,7 +8,15 @@ export const appState = reactive({
     Images: false,
     Settings: false,
 });
-
+export const appMinimized = reactive({
+    Browser: false,
+    Documents: false,
+    Images: false,
+    Settings: false,
+})
+export const minimizeApp=(appName:keyof typeof appState) => {
+    appMinimized[appName] = true;
+}
 export const appZIndex = reactive({
     Browser: 100,
     Documents: 100,
@@ -37,12 +45,3 @@ export const toggleApp = (appName: keyof typeof appState): void => {
 export const closeApp = (appName: keyof typeof appState) => {
     appState[appName] = false;
 };
-export const appMinimized = reactive({
-    Browser: false,
-    Documents: false,
-    Images: false,
-    Settings: false,
-})
-export const minimizeApp=(appName:keyof typeof appState) => {
-    appMinimized[appName] = true;
-}
