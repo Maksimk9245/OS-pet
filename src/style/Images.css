@@ -28,3 +28,23 @@
     object-fit: cover;
     display: block;
 }
+.fullscreen-view{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color:black;
+    position: relative;
+}
+.fullscreen-view img{
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}
+.fullscreen-view button{
+    position: absolute;
+    top:20px;
+    left:20px;
+    padding:10px;
+}

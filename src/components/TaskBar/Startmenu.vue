@@ -2,13 +2,19 @@
     <div class="start-menu">
         <div class="search-container">
             <Search class="search-icon" :size="18" />
-            <input type="text" placeholder="Поиск программ и файлов..." class="search-input" />
+            <input type="text"
+                   placeholder="Поиск программ и файлов..."
+                   class="search-input" />
         </div>
 
         <div class="apps-grid">
-            <button class="app-tile" v-for="app in startApps" :key="app.name">
+            <button class="app-tile"
+                    v-for="app in startApps"
+                    :key="app.name">
                 <div class="app-icon">
-                    <component :is="app.icon" :size="24" />
+                    <component
+                        :is="app.icon"
+                        :size="24" />
                 </div>
                 <span class="app-name">{{ app.name }}</span>
             </button>

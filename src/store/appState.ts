@@ -17,6 +17,7 @@ export const appMinimized = reactive({
 export const minimizeApp=(appName:keyof typeof appState) => {
     appMinimized[appName] = true;
 }
+
 export const appZIndex = reactive({
     Browser: 100,
     Documents: 100,
