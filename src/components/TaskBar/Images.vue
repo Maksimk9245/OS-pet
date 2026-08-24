@@ -17,10 +17,11 @@
                 <img :src="image.url" alt="Image thumbnail"/>
             </div>
         </div>
-        <div class="fullscreen-view"
-             v-else>
-                <img :src="selectedImage">
-                <button @click="selectedImage=null">Назад</button>
+        <div class="fullscreen-view" v-else>
+            <button class="nav-btn prev-btn" @click="prevImage"> &lt; </button>
+            <img :src="selectedImage" />
+            <button class="nav-btn next-btn" @click="nextImage"> &gt; </button>
+            <button class="close-btn" @click="selectedImage = null">Назад</button>
         </div>
     </WindowFrame>
 </template>
@@ -39,9 +40,56 @@ const imageList = ref([
 
 const selectedImage = ref <string | null>(null);
 
+const nextImage = () =>{
+    const currentIndex = imageList.value.findIndex(img => img.url === selectedImage.value);
+    if (currentIndex < imageList.value.length - 1) {
+        selectedImage.value = imageList.value[currentIndex + 1].url;
+    } else {
+        selectedImage.value = imageList.value[0].url;
+    }
+};
+const prevImage = () =>{
+    const currentIndex = imageList.value.findIndex(img => img.url === selectedImage.value);
+    if( currentIndex > 0) {
+        selectedImage.value = imageList.value[currentIndex -1].url
+    } else {
+        selectedImage.value =imageList.value[imageList.value.length - 1].url;
+    }
+}
+
 defineEmits ( ["close", "minimize"]);
 </script>
 <style scoped>
 @import '../../style/Images.css';
 
 </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
