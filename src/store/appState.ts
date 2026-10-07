@@ -1,4 +1,5 @@
 import { reactive } from 'vue';
+import { ref } from 'vue';
 
 let globalZIndex = 100;
 
@@ -46,3 +47,5 @@ export const toggleApp = (appName: keyof typeof appState): void => {
 export const closeApp = (appName: keyof typeof appState) => {
     appState[appName] = false;
 };
+
+export const desktopWallpaper = ref('https://picsum.photos/1920/1080?random=10');

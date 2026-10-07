@@ -3,5 +3,18 @@
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
-  ]
+  ],
+  "compilerOptions": {
+      "module": "commonjs",
+      "declaration": true,
+      "removeComments": true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "allowSyntheticDefaultImports": true,
+      "target": "ES2021",
+      "outDir": "./dist",
+      "incremental": true,
+      "skipLibCheck": true,
+      "types": ["node"]
+    }
 }
