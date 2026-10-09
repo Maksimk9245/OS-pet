@@ -18,6 +18,12 @@
             @minimize="minimizeApp('Images')"
             @close="closeApp('Images')"
         />
+        <Settings
+            v-if="appState.Settings"
+            v-show="!appMinimized.Settings"
+            @minimize="minimizeApp('Settings')"
+            @close="closeApp('Settings')"
+        />
     </div>
 </template>
 
@@ -25,6 +31,7 @@
 import Browser from "./TaskBar/Browser.vue";
 import Document from "./TaskBar/Document.vue";
 import Images from "./TaskBar/Images.vue";
+import Settings from "./TaskBar/Settings/Settings.vue";
 import { appState, closeApp, appMinimized, minimizeApp, desktopWallpaper } from '../store/appState.ts'
 import { onMounted } from 'vue';
 onMounted(async () => {
