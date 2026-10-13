@@ -1,53 +1,61 @@
 <template>
     <div class="apps-settings-container">
         <div class="list-group settings-list">
-            <div class="list-item">
+            <div v-for="app in installedApps" :key="app.id" class="list-item">
                 <div class="item-left">
-                    <LayoutList :size="20" class="item-icon"/>
+                    <component :is="app.icon" :size="20" class="item-icon" />
                     <div class="item-text">
-                        <span class="title">Installed apps</span>
-                        <span class="desc">Manage apps available in your Web OS</span>
+                        <span class="title">{{ app.name }}</span>
+                        <span class="desc">Status: {{ isAppRunning(app.id) ? 'Running' : 'Closed' }}</span>
                     </div>
                 </div>
-                <ChevronRight :size="18" class="chevron" />
-            </div>
-            <div class="list-item">
-                <div class="item-left">
-                    <CheckSquare :size="20" class="item-icon"/>
-                    <div class="item-text">
-                        <span class="title">Default apps</span>
-                        <span class="desc">Defaults for browser, images, and text files</span>
-                    </div>
+                <div class="item-right">
+                    <button class="app-btn" :class="{ close: isAppRunning(app.id) }" @click="toggleApp(app.id)">
+                        {{ isAppRunning(app.id) ? 'Close' : 'Launch' }}
+                    </button>
                 </div>
-                <ChevronRight :size="18" class="chevron" />
-            </div>
-            <div class="list-item">
-                <div class="item-left">
-                    <PlaySquare :size="20" class="item-icon"/>
-                    <div class="item-text">
-                        <span class="title">Startup</span>
-                        <span class="desc">Apps that start automatically when OS boots</span>
-                    </div>
-                </div>
-                <ChevronRight :size="18" class="chevron" />
-            </div>
-            <div class="list-item">
-                <div class="item-left">
-                    <Shield :size="20" class="item-icon"/>
-                    <div class="item-text">
-                        <span class="title">App permissions</span>
-                        <span class="desc">Manage camera, microphone, and location access</span>
-                    </div>
-                </div>
-                <ChevronRight :size="18" class="chevron" />
             </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { LayoutList, CheckSquare, PlaySquare, Shield, ChevronRight } from 'lucide-vue-next';
+import { Globe, FileText, Image as ImageIcon, Settings as SettingsIcon } from 'lucide-vue-next';
+import { appState, closeApp } from "../../../../store/appState.ts";
+
+const installedApps = [
+    { id: 'Browser', name: 'Browser', icon: Globe },
+    { id: 'Documents', name: 'Documents', icon: FileText },
+    { id: 'Images', name: 'Gallery / Images', icon: ImageIcon },
+    { id: 'Settings', name: 'Settings', icon: SettingsIcon },
+];
+
+const isAppRunning = (appId: string) => {
+    return !!(appState as any)[appId];
+};
+
+const toggleApp = (appId: string) => {
+    if (isAppRunning(appId)) {
+        closeApp(appId as any);
+    } else {
+        (appState as any)[appId] = true;
+    }
+};
 </script>
-<style>
-@import "../../../../style/Settings.css";
+
+<style scoped>
+.app-btn {
+    padding: 6px 14px;
+    background: #60cdff;
+    color: #000;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.app-btn.close {
+    background: #ff6767;
+    color: #fff;
+}
 </style>
